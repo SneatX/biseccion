@@ -1,9 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from sympy import lambdify
 from modules.limpiarConsola import limpiarPantalla
 
-def metodoBiseccion(funcion, a, b, tolera):
-    fx = lambda x: eval(funcion)
+def metodoBiseccion(expr, a, b, tolera):
+    # Convertir la expresión de SymPy a una función evaluable en Python
+    fx = lambdify('x', expr, 'numpy')
 
     tramo = b - a
     iteraciones = 0
@@ -34,7 +36,6 @@ def metodoBiseccion(funcion, a, b, tolera):
         a_vals.append(a)
         b_vals.append(b)
         c_vals.append(c)
-
 
     print('Raíz en: ', c)
     print('Error en tramo: ', tramo)
